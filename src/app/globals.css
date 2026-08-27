@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  /* DCRO — ground truth palette. Narrow by design; red is an event, not a surface. */
+  --color-ground: #050505;
+  --color-graphite: #111111;
+  --color-steel: #17181a;
+  --color-paper: #f2f2f0;
+  --color-aluminium: #9a9a95;
+  --color-accent: #c8102e;
+
+  --color-rule: rgb(242 242 240 / 0.10);
+  --color-rule-strong: rgb(242 242 240 / 0.22);
+
+  --font-display: var(--font-archivo), "Arial Narrow", system-ui, sans-serif;
+  --font-sans: var(--font-plex), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* One easing family across the whole site. This is a brand asset. */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+:root {
+  --nav-h: 72px;
+  color-scheme: dark;
+}
+
+* { min-width: 0; }
+
+html {
+  background: var(--color-ground);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  /* Transparent on purpose: the persistent WebGL canvas sits at z-0 behind the
+     content, and an opaque body background paints straight over it. The ground
+     colour lives on <html> so there is still a solid backstop. */
+  background: transparent;
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+::selection { background: var(--color-accent); color: var(--color-paper); }
+
+/* Type roles ------------------------------------------------------------- */
+
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.t-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.t-body {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.6;
+  color: rgb(242 242 240 / 0.72);
+  text-wrap: pretty;
+  max-width: 62ch;
+}
+
+/* Focus — designed, never removed -------------------------------------- */
+
+:focus-visible {
+  outline: 1px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* The technical rail: a CAD-drawing margin that runs the whole site ------ */
+
+.rail-tick::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 18px;
+  height: 1px;
+  background: var(--color-rule-strong);
+}
+
+/* Reveal primitives — masked, not faded in ------------------------------ */
+
+.reveal-mask { overflow: hidden; display: block; }
+.reveal-line { display: block; will-change: transform; }
+
+/* Custom cursor hides the native one only on precise pointers ----------- */
+
+@media (hover: hover) and (pointer: fine) {
+  body[data-cursor="on"],
+  body[data-cursor="on"] a,
+  body[data-cursor="on"] button { cursor: none; }
+}
+
+/* Scrollbar — thin, aluminium, part of the instrument panel -------------- */
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-ground); }
+::-webkit-scrollbar-thumb { background: rgb(154 154 149 / 0.28); }
+::-webkit-scrollbar-thumb:hover { background: rgb(154 154 149 / 0.5); }
+
+/* Grain — the single cheapest thing that stops 3D looking plastic -------- */
+
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 6s steps(6) infinite;
+}
+
+@keyframes grain {
+  0%,100% { transform: translate(0,0) }
+  20% { transform: translate(-3%, 2%) }
+  40% { transform: translate(2%, -3%) }
+  60% { transform: translate(-2%, -2%) }
+  80% { transform: translate(3%, 1%) }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::after { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
