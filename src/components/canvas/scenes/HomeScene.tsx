@@ -101,16 +101,16 @@ export function HomeScene({ tier, mobile = false }: { tier: Tier; mobile?: boole
 
       case "engineering":
         return {
-          sweep: 0.3 + n * 0.44,
-          presence: 0.9,
-          explode: smooth(0.3, 0.62, n) * 0.32,
+          sweep: 0.38 + n * 0.3,
+          presence: 0.95,
+          explode: smooth(0.3, 0.62, n) * 0.11,
           finish: "silver" as Finish,
           mood: "clinical" as LightMood,
           cabin: 0,
           glow: 1.2,
           // The cut out of the home narrative.
           through: smooth(0.78, 1, n),
-          keyIntensity: 44,
+          keyIntensity: 62,
           pScale: 1,
           pos: [0, 0, 0] as [number, number, number],
         };

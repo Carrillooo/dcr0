@@ -73,7 +73,7 @@ export function SoundToggle({ inline = false }: { inline?: boolean }) {
 
   const className = inline
     ? "flex items-center gap-2"
-    : "fixed bottom-8 left-10 z-50 hidden items-center gap-2 md:flex";
+    : "fixed bottom-8 right-10 z-50 hidden items-center gap-2 md:flex";
 
   return (
     <button

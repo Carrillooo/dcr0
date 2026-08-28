@@ -7,7 +7,7 @@ export function Footer() {
       <div className="mx-auto max-w-[1800px] px-5 py-16 md:px-10 md:py-24">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <p className="t-display text-[13vw] leading-[0.82] md:text-[6.5vw]">
+            <p className="t-display text-[12vw] leading-[0.86] md:text-[6.5vw]">
               Every detail
               <br />
               matters.

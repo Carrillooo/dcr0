@@ -1,6 +1,7 @@
 "use client";
 
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 import { EMPTY_VEHICLE, type VehicleSelection } from "@/data/vehicles";
 import { getProduct } from "@/data/products";
 
@@ -116,37 +117,55 @@ type Commerce = {
 const sameLine = (l: CartLine, slug: string, variant?: string) =>
   l.slug === slug && (l.variant ?? null) === (variant ?? null);
 
-export const useCommerce = create<Commerce>((set) => ({
-  lines: [],
-  add: (slug, variant) =>
-    set((s) => {
-      const found = s.lines.find((l) => sameLine(l, slug, variant));
-      return {
-        lines: found
-          ? s.lines.map((l) => (sameLine(l, slug, variant) ? { ...l, qty: l.qty + 1 } : l))
-          : [...s.lines, { slug, qty: 1, variant }],
-      };
+/* Commerce state survives a reload. A cart that empties when someone refreshes
+   — or a fitment selection they have to make again on every page — is broken
+   commerce, however good the rest of the site looks.
+
+   Everything read from this store is behind `useHydrated()` in the components,
+   so rehydrating from localStorage cannot desynchronise the server markup from
+   the first client paint. */
+export const useCommerce = create<Commerce>()(
+  persist(
+    (set) => ({
+      lines: [],
+      add: (slug, variant) =>
+        set((s) => {
+          const found = s.lines.find((l) => sameLine(l, slug, variant));
+          return {
+            lines: found
+              ? s.lines.map((l) => (sameLine(l, slug, variant) ? { ...l, qty: l.qty + 1 } : l))
+              : [...s.lines, { slug, qty: 1, variant }],
+          };
+        }),
+      remove: (slug, variant) =>
+        set((s) => ({ lines: s.lines.filter((l) => !sameLine(l, slug, variant)) })),
+      setQty: (slug, qty, variant) =>
+        set((s) => ({
+          lines: s.lines
+            .map((l) => (sameLine(l, slug, variant) ? { ...l, qty } : l))
+            .filter((l) => l.qty > 0),
+        })),
+      clear: () => set({ lines: [] }),
+
+      vehicle: EMPTY_VEHICLE,
+      setVehicle: (vehicle) => set({ vehicle }),
+      clearVehicle: () => set({ vehicle: EMPTY_VEHICLE }),
+
+      saved: [],
+      toggleSaved: (slug) =>
+        set((s) => ({
+          saved: s.saved.includes(slug) ? s.saved.filter((x) => x !== slug) : [...s.saved, slug],
+        })),
     }),
-  remove: (slug, variant) =>
-    set((s) => ({ lines: s.lines.filter((l) => !sameLine(l, slug, variant)) })),
-  setQty: (slug, qty, variant) =>
-    set((s) => ({
-      lines: s.lines
-        .map((l) => (sameLine(l, slug, variant) ? { ...l, qty } : l))
-        .filter((l) => l.qty > 0),
-    })),
-  clear: () => set({ lines: [] }),
-
-  vehicle: EMPTY_VEHICLE,
-  setVehicle: (vehicle) => set({ vehicle }),
-  clearVehicle: () => set({ vehicle: EMPTY_VEHICLE }),
-
-  saved: [],
-  toggleSaved: (slug) =>
-    set((s) => ({
-      saved: s.saved.includes(slug) ? s.saved.filter((x) => x !== slug) : [...s.saved, slug],
-    })),
-}));
+    {
+      name: "dcro-commerce",
+      version: 1,
+      storage: createJSONStorage(() => localStorage),
+      // Only the durable parts. Actions are recreated on every load.
+      partialize: (s) => ({ lines: s.lines, vehicle: s.vehicle, saved: s.saved }),
+    },
+  ),
+);
 
 export const cartCount = (lines: CartLine[]) => lines.reduce((n, l) => n + l.qty, 0);
 

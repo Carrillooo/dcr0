@@ -139,7 +139,7 @@ export function VehicleSelector({ compact = false }: { compact?: boolean }) {
           <div
             role="radiogroup"
             aria-label={LABEL[step]}
-            className={`grid gap-x-8 ${compact ? "grid-cols-2 md:grid-cols-3" : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"}`}
+            className="grid gap-x-8 grid-cols-2 md:grid-cols-3"
           >
             {options.map((o) => (
               <button
@@ -151,7 +151,7 @@ export function VehicleSelector({ compact = false }: { compact?: boolean }) {
                 data-cursor="Select"
                 className="vs-opt group flex min-h-[3.25rem] items-center justify-between gap-3 border-b border-rule py-3 text-left transition-colors hover:border-rule-strong"
               >
-                <span className="font-display text-lg uppercase leading-tight tracking-tight transition-transform duration-400 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-1.5 md:text-xl">
+                <span className="font-display min-w-0 break-words text-base uppercase leading-tight tracking-tight transition-transform duration-400 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-1.5 md:text-lg">
                   {label(o)}
                 </span>
                 <span className="t-mono text-aluminium opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -173,10 +173,10 @@ function Complete({ onReset }: { onReset: () => void }) {
   return (
     <div>
       <p className="t-mono text-accent">Match found</p>
-      <p className="t-display mt-4 text-[11vw] leading-[0.86] md:text-[4.5vw]">
-        {count} product{count === 1 ? "" : "s"}
+      <p className="t-display mt-4 text-[10vw] leading-[0.88] md:text-[3.4vw]">
+        {count} product{count === 1 ? "" : "s"} fit
         <br />
-        <span className="text-aluminium">available for your car.</span>
+        <span className="text-aluminium">your car.</span>
       </p>
       <div className="mt-10 flex flex-wrap items-center gap-8">
         <Link

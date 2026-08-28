@@ -91,7 +91,7 @@ export function Loader() {
   return (
     <div
       ref={root}
-      className="fixed inset-0 z-[100] flex flex-col justify-between bg-ground px-6 py-8 md:px-12 md:py-10"
+      className="loader-panel fixed inset-0 z-[100] flex flex-col justify-between bg-ground px-6 py-8 md:px-12 md:py-10"
       role="status"
       aria-live="polite"
       aria-label="Loading DCRO"

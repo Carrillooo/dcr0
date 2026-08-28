@@ -88,7 +88,7 @@ export function ProductView({ product, related }: { product: Product; related: P
 
           <div className="py-6 lg:col-span-4 lg:col-start-9 lg:py-[12vh]">
             <p className="t-mono text-accent">{product.line}</p>
-            <h1 className="t-display mt-3 text-[13vw] leading-[0.86] md:text-[4vw]">
+            <h1 className="t-display mt-3 text-[12vw] leading-[0.88] md:text-[4vw]">
               {product.name}
             </h1>
             <p className="mt-5 text-lg leading-snug text-paper/85">{product.tagline}</p>
@@ -350,7 +350,7 @@ function Story({ product, setExplode }: { product: Product; setExplode: (n: numb
         <div className="mx-auto flex h-full max-w-[1800px] flex-col justify-between px-5 py-[12vh] md:px-10">
           <div data-beat data-from="0" data-to="0.14">
             <p className="t-mono text-accent">Built with precision</p>
-            <h2 className="t-display mt-3 text-[12vw] leading-[0.86] md:text-[4.5vw]">
+            <h2 className="t-display mt-3 text-[11vw] leading-[0.9] md:text-[4.5vw]">
               Six components.
             </h2>
           </div>

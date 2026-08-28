@@ -20,13 +20,13 @@ export function VehicleView() {
       <Scene scene="vehicle" />
 
       <div className="relative min-h-screen pt-[calc(var(--nav-h)+8vh)]">
-        <div className="mx-auto max-w-[1800px] px-5 pb-32 md:px-10">
+        <div className="mx-auto max-w-[1800px] px-5 pb-44 md:px-10 md:pb-52">
           <div className="grid gap-16 lg:grid-cols-12">
             <div className="lg:col-span-6">
               <Reveal as="p" className="t-mono text-accent">
                 Fitment
               </Reveal>
-              <Reveal as="h1" className="t-display mt-4 text-[15vw] leading-[0.84] md:text-[6.5vw]" y={70}>
+              <Reveal as="h1" className="t-display mt-4 text-[13vw] leading-[0.86] md:text-[6.5vw]" y={70}>
                 Select
                 <br />
                 your car.

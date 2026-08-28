@@ -4,6 +4,7 @@ import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Backdrop } from "../Atmosphere";
+import { Studio } from "../Studio";
 
 /* ---------------------------------------------------------------------------
  * The vehicle selector is not a form with three dropdowns on a white card.
@@ -73,12 +74,17 @@ export function VehicleScene({
   const solidMat = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color: "#0d0d10",
-        metalness: 0.9,
-        roughness: 0.32,
+        // Automotive paint over a dark base: light enough that the resolved
+        // body actually reads as a car rather than as a hole in the page.
+        // Automotive paint: a diffuse base under a clearcoat, not a mirror.
+        // High metalness in a dark studio gives a black cut-out, because a
+        // metal can only show you what there is to reflect.
+        color: "#31343c",
+        metalness: 0.1,
+        roughness: 0.44,
         clearcoat: 1,
-        clearcoatRoughness: 0.14,
-        envMapIntensity: 1.2,
+        clearcoatRoughness: 0.08,
+        envMapIntensity: 1.0,
         transparent: true,
         opacity: 0,
       }),
@@ -108,10 +114,13 @@ export function VehicleScene({
 
   return (
     <>
+      <Studio mood="clinical" resolution={128} />
       <Backdrop sweep={0.3 + progress * 0.4} presence={0.75} ground="#08080b" accent={progress} />
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[4, 6, 5]} intensity={2.2} color="#dfe6f5" />
-      <directionalLight position={[-5, 2, -4]} intensity={1.4} color="#c8102e" />
+      {/* Studio key, cool fill from behind, and a very restrained red kicker. */}
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[4, 7, 6]} intensity={3.4} color="#eef2fb" />
+      <directionalLight position={[-6, 3, -5]} intensity={1.8} color="#8fa4c8" />
+      <directionalLight position={[2, -1, -6]} intensity={0.45} color="#c8102e" />
 
       <group scale={scale} position={[offset, 0.35, 0]}>
         <lineSegments ref={lines} geometry={edges} material={lineMat} />

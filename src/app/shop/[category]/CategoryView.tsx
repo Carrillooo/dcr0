@@ -43,7 +43,7 @@ export function CategoryView({ category, products }: { category: Category; produ
           <Reveal as="p" className="t-mono text-accent">
             {category.index} — World
           </Reveal>
-          <Reveal as="h1" className="t-display mt-4 text-[20vw] leading-[0.8] md:text-[11vw]" y={80}>
+          <Reveal as="h1" className="t-display mt-4 text-[11.5vw] leading-[0.88] sm:text-[13vw] md:text-[11vw]" y={80}>
             {category.name}
           </Reveal>
           <div className="mt-8 grid gap-6 border-t border-rule pt-6 md:grid-cols-12">
@@ -114,7 +114,7 @@ export function CategoryView({ category, products }: { category: Category; produ
             {others.map((c) => (
               <Link key={c.slug} href={`/shop/${c.slug}`} className="group block border-t border-rule pt-5">
                 <span className="t-mono text-accent">{c.index}</span>
-                <p className="t-display mt-2 text-4xl transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-2">
+                <p className="t-display mt-2 text-3xl transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-2 xl:text-4xl">
                   {c.name}
                 </p>
                 <p className="t-mono mt-3 text-aluminium">{c.materials}</p>

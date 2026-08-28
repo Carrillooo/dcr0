@@ -22,12 +22,15 @@ export function Cabin({ presence = 1, strip = 1 }: { presence?: number; strip?: 
 
   const mats = useMemo(() => {
     const leather = new THREE.MeshPhysicalMaterial({
-      color: "#0d0d0f",
-      roughness: 0.88,
+      color: "#08080a",
+      roughness: 0.94,
       metalness: 0,
-      sheen: 0.8,
-      sheenRoughness: 0.6,
-      sheenColor: new THREE.Color("#4a4844"),
+      sheen: 0.55,
+      sheenRoughness: 0.75,
+      sheenColor: new THREE.Color("#33312e"),
+      // The cabin is enclosure, not subject: it must never out-brighten the
+      // product sitting in it.
+      envMapIntensity: 0.35,
     });
     const trim = new THREE.MeshPhysicalMaterial({
       color: "#141417",
@@ -50,7 +53,7 @@ export function Cabin({ presence = 1, strip = 1 }: { presence?: number; strip?: 
       group.current.scale.setScalar(0.94 + damped.current * 0.06);
     }
     if (stripMat.current) {
-      stripMat.current.emissiveIntensity = strip * damped.current * 2.4;
+      stripMat.current.emissiveIntensity = strip * damped.current * 0.9;
     }
   });
 
@@ -87,15 +90,15 @@ export function Cabin({ presence = 1, strip = 1 }: { presence?: number; strip?: 
         args={[0.34, 1.5, 3.0]}
         radius={0.12}
         smoothness={3}
-        position={[-1.55, 0.15, -0.5]}
+        position={[-1.95, 0.15, -0.9]}
         rotation={[0, 0, 0.06]}
       >
         <primitive object={mats.leather} attach="material" />
       </RoundedBox>
 
       {/* The one ambient strip — this is the LUMEN product doing its job. */}
-      <mesh position={[-1.36, 0.34, -0.5]} rotation={[0, 0, 0.06]}>
-        <boxGeometry args={[0.012, 0.02, 2.1]} />
+      <mesh position={[-1.76, 0.34, -0.9]} rotation={[0, 0, 0.06]}>
+        <boxGeometry args={[0.01, 0.014, 1.5]} />
         <meshStandardMaterial
           ref={stripMat}
           color="#ffd9b0"

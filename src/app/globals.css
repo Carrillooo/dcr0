@@ -112,6 +112,22 @@ body {
 ::-webkit-scrollbar-thumb { background: rgb(154 154 149 / 0.28); }
 ::-webkit-scrollbar-thumb:hover { background: rgb(154 154 149 / 0.5); }
 
+/* Loader failsafe -------------------------------------------------------
+   The loading panel is a fixed overlay that GSAP normally wipes away in about
+   three seconds. If the JavaScript never runs — a failed chunk, a hostile
+   network, an old browser — nothing would remove it and the site would be a
+   black rectangle. This CSS-only timeout guarantees the visitor always gets
+   through, whatever happens to the script. */
+
+.loader-panel {
+  animation: loader-failsafe 8s steps(1) forwards;
+}
+
+@keyframes loader-failsafe {
+  0%, 99% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
 /* Grain — the single cheapest thing that stops 3D looking plastic -------- */
 
 .grain::after {

@@ -94,7 +94,7 @@ export function ProductCard({
           </span>
         )}
 
-        <div ref={plate} className="absolute inset-0 flex items-center justify-center p-[16%] will-change-transform">
+        <div ref={plate} className="absolute inset-0 flex items-center justify-center p-[10%] will-change-transform">
           <ProductPlate category={product.category} />
         </div>
 

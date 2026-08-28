@@ -51,7 +51,7 @@ export default function Home() {
           y={40}
           className="absolute inset-x-0 top-[14vh] px-5 text-center md:px-10"
         >
-          <h1 className="t-display text-[15vw] leading-[0.84] md:text-[8.5vw]">
+          <h1 className="t-display text-[12.5vw] leading-[0.86] md:text-[8.5vw]">
             DCRO
             <br />
             <span className="text-aluminium">Automotive</span>
@@ -155,14 +155,14 @@ export default function Home() {
               y={40}
               className="absolute inset-x-0 bottom-[14vh] px-5 md:px-10"
             >
-              <div className="mx-auto flex max-w-[1800px] flex-col gap-5 md:flex-row md:items-end md:justify-between">
+              <div className="mx-auto flex max-w-[1800px] flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
                 <div>
                   <span className="t-mono text-accent">{c.index}</span>
-                  <h2 className="t-display mt-3 text-[16vw] leading-[0.82] md:text-[7vw]">
+                  <h2 className="t-display mt-3 text-[12vw] leading-[0.88] md:text-[7vw]">
                     {c.name}
                   </h2>
                 </div>
-                <div className="md:max-w-sm md:pb-3">
+                <div className="lg:max-w-sm lg:pb-3">
                   <p className="text-lg leading-snug text-paper/80">{c.mood}</p>
                   <p className="t-mono mt-4 text-aluminium">{c.materials}</p>
                   <Link
@@ -195,7 +195,8 @@ export default function Home() {
           </h2>
         </Beat>
 
-        <Beat from={0.42} to={0.78} y={20} className="absolute left-5 top-1/2 -translate-y-1/2 md:left-10">
+        {/* Clear of the rail, which owns the left mid-height on every act. */}
+        <Beat from={0.42} to={0.78} y={20} className="absolute left-5 top-[62%] md:left-10">
           <p className="t-mono mb-3 text-accent">Fitment</p>
           <p className="max-w-xs text-lg leading-snug text-paper/85">
             Machined to the factory thread. No adapters showing, no gap at the collar,
@@ -450,7 +451,7 @@ function ShopCall() {
           data-cursor="Enter"
           className="group mt-6 block"
         >
-          <h2 className="t-display text-[14vw] leading-[0.84] transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-4 md:text-[9vw]">
+          <h2 className="t-display text-[11.5vw] leading-[0.88] transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:translate-x-4 md:text-[9vw]">
             {PRODUCTS.length} products.
             <br />
             <span className="text-aluminium transition-colors group-hover:text-paper">

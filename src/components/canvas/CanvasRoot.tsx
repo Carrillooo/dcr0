@@ -98,8 +98,8 @@ export function CanvasRoot() {
           ) : scene === "vehicle" ? (
             <VehicleScene
               progress={vehicleProgress}
-              offset={mobile ? 0 : 2.1}
-              scale={mobile ? 0.4 : 0.52}
+              offset={mobile ? 0 : 1.45}
+              scale={mobile ? 0.34 : 0.44}
             />
           ) : scene === "void" ? null : (
             <HomeScene tier={tier} mobile={mobile} />

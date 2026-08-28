@@ -26,8 +26,18 @@ for (const route of routes) {
     canvas: !!document.querySelector('canvas'),
   }));
   const overflow = doc.scrollW > doc.innerW + 1;
+
+  // Display type is set in vw and clips silently inside overflow-hidden
+  // parents, so measure every heading rather than trusting the page width.
+  const clipped = await page.evaluate(() =>
+    [...document.querySelectorAll('.t-display, .font-display')]
+      .filter((el) => el.scrollWidth > el.clientWidth + 2 && el.clientWidth > 0)
+      .slice(0, 8)
+      .map((el) => `${el.tagName} "${(el.textContent || '').trim().slice(0, 34)}" ${el.scrollWidth}>${el.clientWidth}`),
+  );
   console.log(`\n=== ${route} @${W}x${H} ===`);
   console.log(`height=${doc.scrollH}px canvas=${doc.canvas} overflowX=${overflow ? 'YES ('+doc.scrollW+'>'+doc.innerW+')' : 'no'}`);
+  if (clipped.length) console.log('  CLIPPED TYPE:', clipped.join(' | '));
 
   for (let i = 0; i < steps; i++) {
     const y = Math.round((doc.scrollH - H) * (i / Math.max(1, steps - 1)));

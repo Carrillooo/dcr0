@@ -59,9 +59,9 @@ const DESKTOP: Record<StageId, Move> = {
   },
   /* Macro. Very close, very tight, almost no parallax so it holds still. */
   engineering: {
-    path: new THREE.CatmullRomCurve3([v(1.7, 0.5, 3.4), v(1.0, 0.3, 2.4), v(0.55, 0.02, 1.7), v(0.3, -0.12, 1.4)]),
-    aim: [v(0, 0.18, 0), v(0, -0.1, 0)],
-    fov: [26, 20],
+    path: new THREE.CatmullRomCurve3([v(1.9, 0.7, 3.6), v(1.15, 0.5, 2.7), v(0.7, 0.3, 2.1), v(0.42, 0.16, 1.75)]),
+    aim: [v(0, 0.2, 0), v(0, 0.12, 0)],
+    fov: [26, 21],
     parallax: 0.12,
   },
   /* Product page: free-ish inspection, driven by pointer rather than scroll. */
@@ -108,9 +108,9 @@ const MOBILE: Partial<Record<StageId, Move>> = {
     parallax: 0,
   },
   engineering: {
-    path: new THREE.CatmullRomCurve3([v(1.3, 0.5, 4.2), v(0.8, 0.3, 3.2), v(0.45, 0.02, 2.4), v(0.25, -0.1, 2.0)]),
-    aim: [v(0, 0.18, 0), v(0, -0.08, 0)],
-    fov: [38, 30],
+    path: new THREE.CatmullRomCurve3([v(1.5, 0.7, 4.4), v(0.95, 0.5, 3.4), v(0.6, 0.3, 2.7), v(0.36, 0.18, 2.3)]),
+    aim: [v(0, 0.2, 0), v(0, 0.12, 0)],
+    fov: [38, 31],
     parallax: 0,
   },
   studio: {

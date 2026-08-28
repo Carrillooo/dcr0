@@ -58,7 +58,7 @@ export function AboutView() {
             <Reveal as="p" className="t-mono text-accent">
               Why DCRO exists
             </Reveal>
-            <Reveal as="h1" className="t-display mt-6 text-[17vw] leading-[0.8] md:text-[9vw]" y={90}>
+            <Reveal as="h1" className="t-display mt-6 text-[12vw] leading-[0.84] md:text-[9vw]" y={90}>
               Most upgrades
               <br />
               <span className="text-aluminium">make a car worse.</span>
@@ -75,13 +75,13 @@ export function AboutView() {
         <section className="border-t border-rule">
           <div className="mx-auto max-w-[1800px] px-5 md:px-10">
             {CHAPTERS.map((c) => (
-              <article key={c.n} className="grid gap-6 border-b border-rule py-16 md:grid-cols-12 md:py-24">
-                <div className="md:col-span-3">
+              <article key={c.n} className="grid gap-6 border-b border-rule py-16 lg:grid-cols-12 lg:py-24">
+                <div className="lg:col-span-3">
                   <span className="t-mono text-accent">{c.n}</span>
-                  <h2 className="t-display mt-2 text-5xl md:text-6xl">{c.k}</h2>
+                  <h2 className="t-display mt-2 text-4xl xl:text-5xl">{c.k}</h2>
                 </div>
-                <div className="md:col-span-8 md:col-start-5">
-                  <Reveal as="p" className="font-display text-[7vw] uppercase leading-[0.94] tracking-tight md:text-[2.6vw]">
+                <div className="lg:col-span-8 lg:col-start-5">
+                  <Reveal as="p" className="font-display text-[6.5vw] uppercase leading-[0.96] tracking-tight lg:text-[2.6vw]">
                     {c.lead}
                   </Reveal>
                   <p className="t-body mt-6">{c.body}</p>

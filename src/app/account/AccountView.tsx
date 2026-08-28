@@ -31,7 +31,7 @@ export function AccountView() {
       <div className="relative z-10 min-h-screen bg-ground pt-[calc(var(--nav-h)+8vh)]">
         <div className="mx-auto max-w-[1800px] px-5 pb-32 md:px-10">
           <p className="t-mono text-accent">Account</p>
-          <h1 className="t-display mt-4 text-[14vw] leading-[0.86] md:text-[6vw]">Your garage.</h1>
+          <h1 className="t-display mt-4 text-[12.5vw] leading-[0.88] md:text-[6vw]">Your garage.</h1>
 
           <div className="mt-16 grid gap-16 lg:grid-cols-12">
             <section className="lg:col-span-5">

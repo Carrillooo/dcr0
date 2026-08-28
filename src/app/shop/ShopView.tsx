@@ -50,7 +50,7 @@ export function ShopView() {
               Catalogue
             </Reveal>
             <div className="mt-5 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <Reveal as="h1" className="t-display text-[15vw] leading-[0.84] md:text-[8vw]">
+              <Reveal as="h1" className="t-display text-[13vw] leading-[0.86] md:text-[8vw]">
                 Every part
                 <br />
                 we make.

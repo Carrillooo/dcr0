@@ -5,10 +5,10 @@ export default function NotFound() {
     <div className="relative z-10 flex min-h-screen items-center bg-ground px-5 md:px-10">
       <div className="mx-auto w-full max-w-[1800px]">
         <p className="t-mono text-accent">404</p>
-        <h1 className="t-display mt-5 text-[16vw] leading-[0.84] md:text-[8vw]">
+        <h1 className="t-display mt-5 text-[11vw] leading-[0.88] md:text-[8vw]">
           No part
           <br />
-          <span className="text-aluminium">with that number.</span>
+          <span className="text-aluminium">by that name.</span>
         </h1>
         <p className="t-body mt-8">
           The page you asked for does not exist. It may have been renamed, or the link may be
